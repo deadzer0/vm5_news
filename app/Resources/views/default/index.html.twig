@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1 style="text-align: center; background-color: #f9ecec;">Welcome to NEWS blog</h1>
+            </div>
+            <div class="text-right">
+                {% if  app.user == null %}
+                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-secondary">Register</a>
+                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-secondary">Login</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_logout') }}" class="btn btn-secondary">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+
+    <div class="textcenter" id="wrapper">
+        <div id="container">
+                {% for new in news %}
+                    <h2>{{ new.title }}</h2>
+                    <p>
+                        <strong>пуликувано от: </strong>{{ new.user }},
+                        <strong>на </strong> , {% if new.createdAt %}{{ new.createdAt|date('Y-m-d') }}{% endif %}
+                        <strong>в категория </strong> {{ new.category }}
+                    </p>
+                    <h4>{{ new.resume }}</h4>
+                    <a href="{{ path('post_show', { 'id': new.id }) }}" class="btn btn-warning" >Прочете още</a>
+                   <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h4>Deyan Delev &copy {{ "now"|date("Y") }}, News blog</h4>
+    </div>
+{% endblock %}

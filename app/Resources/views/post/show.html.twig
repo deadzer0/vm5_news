@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="text-center">
+        <h1>{{ post.title }}</h1>
+        <h6>публикувано от {{ post.user }},
+            на {% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %},
+            в {{ post.category }}</h6>
+        <hr>
+    </div>
+        <h4 style="text-align: justify">{{ post.body }}</h4>
+        <hr>
+    <div>
+        <a href="{{ path('post_index') }}">Back to the list</a>
+
+        {% if is_granted('ROLE_ADMIN', 'ROLE_MODERATOR') %}
+            <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        {% endif %}
+
+    </div>
+{% endblock %}
