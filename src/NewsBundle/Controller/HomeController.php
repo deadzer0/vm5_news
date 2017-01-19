@@ -5,6 +5,7 @@ namespace NewsBundle\Controller;
 use NewsBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class HomeController extends Controller
 {

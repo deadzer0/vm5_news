@@ -17,51 +17,37 @@
     </div>
     {% endif %}
     <div class="text-center">
-        <h1>News list</h1>
+        <h1>Categories list</h1>
     </div>
-    <div class="text-left">
-        {% if is_granted('ROLE_ADMIN', 'ROLE_MODERATOR') %}
-            <a href="{{ path('post_new') }}" class="btn btn-primary">Създай новина</a>
-        {% endif %}
-        <hr>
-    </div>
-
 
     <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Resume</th>
-                <th>Body</th>
-                <th>Created at</th>
+                <th>Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for post in posts %}
+        {% for category in categories %}
             <tr>
-                <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.id }}</a></td>
-                <td>{{ post.title }}</td>
-                <td>{{ post.resume }}</td>
-                <td>{{ post.body }}</td>
-                <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                <td>{{ category.name }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('post_show', { 'id': post.id }) }}">show</a>
-                        </li>
-                        {% if is_granted('ROLE_ADMIN', 'ROLE_MODERATOR') %}
-                        <li>
-                            <a href="{{ path('post_edit', { 'id': post.id }) }}">edit</a>
-                        </li>
-                        {% endif %}
-                    </ul>
+                    <a href="{{ path('category_show', { 'id': category.id }) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN', 'ROLE_MODERATOR') %}
+                        <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
+                    {% endif %}
                 </td>
-
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <hr>
+
+
+            {% if is_granted('ROLE_ADMIN', 'ROLE_MODERATOR') %}
+                <a href="{{ path('category_new') }}" class="btn btn-primary">Create a new category</a>
+            {% endif %}
+
+
 {% endblock %}

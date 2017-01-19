@@ -13,6 +13,8 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return new Response("<html><body>Admin Panel</body></html>");
+        return $this->render(':admin:index.html.twig');
     }
+
+
 }

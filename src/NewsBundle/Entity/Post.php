@@ -52,12 +52,12 @@ class Post
     /**
      * @ORM\ManyToOne(targetEntity="NewsBundle\Entity\User")
      */
-    public $user;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="NewsBundle\Entity\Category")
+     * @ORM\ManyToMany(targetEntity="NewsBundle\Entity\Category")
      */
-    public $category;
+    private $category;
 
 
     /**
@@ -157,5 +157,39 @@ class Post
     {
         return $this->createdAt;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+
 }
 

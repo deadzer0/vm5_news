@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1 style="text-align: center; background-color: #f9ecec;">Admin panel</h1>
+                <div class="text-right text-info">
+                    <h4><img src="{{ asset('bundles/news/assets/images/anonymous.jpg') }}" class="img-rounded" width="40" height="40" alt="users">
+                        Здравейте, {{ app.user }}</a>
+                    </h4>
+                    <h5>последен вход: {{ app.user.lastLogin|date('Y-m-d H:i:s') }}</a></h5>
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-secondary">Profile</a>
+                    <a href="{{ path('fos_user_security_logout') }}" class="btn btn-secondary">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="jumbotron">
+                <h2><a href="">Потребители</a></h2>
+                <p>Преглед и менажиране на регистрираните потребители на сайта</p>
+            </div>
+            <div class="jumbotron">
+                <h2><a href="{{ path('post_index') }}">Новини</a></h2>
+                <p>Преглед и менажиране на всички публикации на сайта</p>
+            </div>
+            <div class="jumbotron">
+                <h2><a href="{{ path('category_index') }}">Категории</a></h2>
+                <p>Преглед и менажиране на всички категории на сайта</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h4>Deyan Delev &copy {{ "now"|date("Y") }}, News blog</h4>
+    </div>
+{% endblock %}

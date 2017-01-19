@@ -5,7 +5,10 @@
         <h1>{{ post.title }}</h1>
         <h6>публикувано от {{ post.user }},
             на {% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %},
-            в {{ post.category }}</h6>
+            {% for category in post.category %}
+                {{ category.name }},
+            {% endfor %}
+        </h6>
         <hr>
     </div>
         <h4 style="text-align: justify">{{ post.body }}</h4>

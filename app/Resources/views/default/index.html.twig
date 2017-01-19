@@ -11,6 +11,10 @@
                     <a href="{{ path('fos_user_registration_register') }}" class="btn btn-secondary">Register</a>
                     <a href="{{ path('fos_user_security_login') }}" class="btn btn-secondary">Login</a>
                 {% else %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('admin_panel') }}" class="btn btn-secondary">Admin Panel</a>
+                    {% endif %}
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-secondary">Profile</a>
                     <a href="{{ path('fos_user_security_logout') }}" class="btn btn-secondary">Logout</a>
                 {% endif %}
             </div>
@@ -19,11 +23,15 @@
     <div class="textcenter" id="wrapper">
         <div id="container">
                 {% for new in news %}
-                    <h2>{{ new.title }}</h2>
+                    <h2 class="text-muted">{{ new.title }}</h2>
                     <p>
-                        <strong>пуликувано от: </strong>{{ new.user }},
-                        <strong>на </strong> , {% if new.createdAt %}{{ new.createdAt|date('Y-m-d') }}{% endif %}
-                        <strong>в категория </strong> {{ new.category }}
+                        <strong>пуликувано от: </strong><a href="#">{{ new.user }}</a> ,
+                        <strong>на </strong> {% if new.createdAt %}{{ new.createdAt|date('Y-m-d') }}{% endif %}
+                        <strong>в категория </strong>
+                        {% for category in new.category %}
+                        <a href="#">{{ category.name }}</a>,
+                        {% endfor %}
+
                     </p>
                     <h4>{{ new.resume }}</h4>
                     <a href="{{ path('post_show', { 'id': new.id }) }}" class="btn btn-warning" >Прочете още</a>
