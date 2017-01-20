@@ -14,7 +14,7 @@
         <h4 style="text-align: justify">{{ post.body }}</h4>
         <hr>
     <div>
-        <a href="{{ path('post_index') }}">Back to the list</a>
+        <a href="{{ path('post_index') }}">News list</a>
 
         {% if is_granted('ROLE_ADMIN', 'ROLE_MODERATOR') %}
             <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>

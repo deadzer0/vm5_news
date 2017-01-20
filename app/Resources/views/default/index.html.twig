@@ -14,14 +14,14 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('admin_panel') }}" class="btn btn-secondary">Admin Panel</a>
                     {% endif %}
-                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-secondary">Profile</a>
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-secondary">My profile</a>
                     <a href="{{ path('fos_user_security_logout') }}" class="btn btn-secondary">Logout</a>
                 {% endif %}
             </div>
         </div>
 
-    <div class="textcenter" id="wrapper">
-        <div id="container">
+        <div class="textcenter" id="wrapper">
+            <div id="container">
                 {% for new in news %}
                     <h2 class="text-muted">{{ new.title }}</h2>
                     <p>
@@ -29,18 +29,22 @@
                         <strong>на </strong> {% if new.createdAt %}{{ new.createdAt|date('Y-m-d') }}{% endif %}
                         <strong>в категория </strong>
                         {% for category in new.category %}
-                        <a href="#">{{ category.name }}</a>,
+                            <a href="#">{{ category.name }}</a>,
                         {% endfor %}
 
                     </p>
                     <h4>{{ new.resume }}</h4>
-                    <a href="{{ path('post_show', { 'id': new.id }) }}" class="btn btn-warning" >Прочете още</a>
-                   <hr>
+                    <a href="{{ path('post_show', { 'id': new.id }) }}" class="btn btn-warning">Прочете още</a>
+                    <hr>
                 {% endfor %}
             </div>
         </div>
     </div>
-
+    {# pagination #}
+    <div class="navigation text-center">
+        {{ knp_pagination_render(news) }}
+    </div>
+    <hr>
     <div class="text-center">
         <h4>Deyan Delev &copy {{ "now"|date("Y") }}, News blog</h4>
     </div>
