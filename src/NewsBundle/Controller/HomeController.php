@@ -27,8 +27,6 @@ class HomeController extends Controller
             $request->query->getInt('limit', 4)
         );
 
-        dump(get_class($paginator));
-
         return $this->render('default/index.html.twig', array(
             'news' => $result
 
