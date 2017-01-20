@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.yml }
+#    - { resource: parameters.yml } (disabled, heroku)
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@NewsBundle/Resources/config/services.yml" }
