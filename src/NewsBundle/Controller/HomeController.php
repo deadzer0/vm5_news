@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function indexAction(Request $request)
     {
         $newsrepo = $this->getDoctrine()->getRepository('NewsBundle:Post');
-        $news = $newsrepo->findAll();
+        $news = $newsrepo->findBy(array(), array('id' => 'DESC'));
 
         /**
          * @var $paginator \Knp\Component\Pager\Paginator
